@@ -1,0 +1,666 @@
+{
+	"compiler": {
+		"version": "0.8.3+commit.8d00100c"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_rewardsDistribution",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_rewardsToken",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_stakingToken",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "oldOwner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnerChanged",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnerNominated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Recovered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "reward",
+						"type": "uint256"
+					}
+				],
+				"name": "RewardAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "reward",
+						"type": "uint256"
+					}
+				],
+				"name": "RewardPaid",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newDuration",
+						"type": "uint256"
+					}
+				],
+				"name": "RewardsDurationUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Staked",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Withdrawn",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "acceptOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "earned",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "exit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getReward",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getRewardForDuration",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lastTimeRewardApplicable",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lastUpdateTime",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					}
+				],
+				"name": "nominateNewOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "nominatedOwner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "reward",
+						"type": "uint256"
+					}
+				],
+				"name": "notifyRewardAmount",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "periodFinish",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "tokenAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "recoverERC20",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rewardPerToken",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rewardPerTokenStored",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rewardRate",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "rewards",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rewardsDistribution",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rewardsDuration",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rewardsToken",
+				"outputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_rewardsDistribution",
+						"type": "address"
+					}
+				],
+				"name": "setRewardsDistribution",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_rewardsDuration",
+						"type": "uint256"
+					}
+				],
+				"name": "setRewardsDuration",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "stake",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "stakingToken",
+				"outputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalSupply",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "updatePeriodFinish",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "userRewardPerTokenPaid",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"StakingRewards.sol": "StakingRewards"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"IStakingRewards.sol": {
+			"keccak256": "0x101eb715d1f9052ff553418ba0412bc7324b37dab44c2c6f259a659eb48505f0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2a6db874d38dd5334e11effa3d251a369d8a268c19cff81943486baa25196e40",
+				"dweb:/ipfs/QmdD7N77UExMYGHzbbNSaYUdnu3jfG5HNQkoWaAhfmiFaQ"
+			]
+		},
+		"Owned.sol": {
+			"keccak256": "0x9845de727dc34a3644dc730af115b01c4e1cc8316db6f2ede2ff72f06ac89fb4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d2407b738b9749ca69e7a965cd7b2a02c088707f991fc3b7da0c3be2211b1f3d",
+				"dweb:/ipfs/QmY4rmQa3xyMMoFc25oi3ALXqNHye9Vhf7FwejuoSwKLHm"
+			]
+		},
+		"RewardsDistributionRecipient.sol": {
+			"keccak256": "0x7491d2ce831d35f3412a503023aca82aa3a8f4c3cd5d42570096b21a1d3d164c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://62d3b544c57d27c19bc2820c5489c28e69b3faa02d1c8e595885a7632152317e",
+				"dweb:/ipfs/QmdugHa3ejUbdCNUECm8k4RhpSCgLk28eMGxc2Rhgm6eNy"
+			]
+		},
+		"StakingRewards.sol": {
+			"keccak256": "0xfb14e52f2e5e4952b41f2aa46cc7fd6a9244c9231e103584e10bf3d37f4c32d3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0aed190a4cd859199d21b19d17e87cf22cb07f55beb9ad2f74cd0d6ef13e3137",
+				"dweb:/ipfs/Qmb5X1i7mePRJFLUoEekB6hcqE1agXiHb9nTLLEkhuxvYR"
+			]
+		},
+		"openzeppelin-solidity/contracts/Address.sol": {
+			"keccak256": "0xaec2cdd3f329b3f419feeffdfc012f28bfbadcccbaa6f89de472601de74798da",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://29d091288d34ef225c6aa4e86553a40401fe32f156e42acdaf5e28c2ee85181d",
+				"dweb:/ipfs/QmQosxxWWsprB6Dsu44feJ1XSeaJDHQUeRUNdxpXDLMBrw"
+			]
+		},
+		"openzeppelin-solidity/contracts/IERC20.sol": {
+			"keccak256": "0x3ce03752afe9d8ab41579a52d7a8376e8f5662e00afeed6dbb61a84db807afec",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2efdc6f617c1c1ba8df6b8cae474b8954fd803d95c9840ee8813d18faf95352c",
+				"dweb:/ipfs/Qma1dpEitpFyt1bxxKhPMmpd2u8WEwEZcUw1p4vRyGLCnj"
+			]
+		},
+		"openzeppelin-solidity/contracts/Math.sol": {
+			"keccak256": "0x9f97738cdb8dfc3b432246fc96bba2012b62c95422ae749314e6d1df41e84f88",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c25ee886bda6af93ecc389e1a7537c396344a57c7906fac8f5f8534983dac26d",
+				"dweb:/ipfs/QmRYbz5ZgKD9R241kNzatxybcFGPecxscKaNM4FtkAjtGs"
+			]
+		},
+		"openzeppelin-solidity/contracts/ReentrancyGuard.sol": {
+			"keccak256": "0x05647901ef5058bfdc78575b73d5354198828f1a8f17328adcdac52285c988b8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0a9b85fc71ff2d5a9601de0676253a97bcea4bf975edfe28f71ee6738238c2a8",
+				"dweb:/ipfs/QmcvvBHLNcQCAupMuwuj6LiqVgis7tj2DaET8fjfUWqdsv"
+			]
+		},
+		"openzeppelin-solidity/contracts/SafeERC20.sol": {
+			"keccak256": "0x74a609e5e0970125377d3159522f5b8e6bc25d3775f4df3630b915f9bf4d66aa",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a6d346b1700b18bd05ccb5e877afbad068a54c5c9ec825ac277b36e62f66e710",
+				"dweb:/ipfs/QmU1MUtvhVnuT7QUTxpcs33VeRhCyfVf9LTyBAZaX49Urj"
+			]
+		},
+		"openzeppelin-solidity/contracts/SafeMath.sol": {
+			"keccak256": "0x4d6679ae9c915aa35d9143abdfb72f2009916e28eba47a85382a57d39fb522c6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://bfcffc61ca20b8d170cf35b38e1ea8b2b7ea93a1aaeda8b36fe766120dc20e48",
+				"dweb:/ipfs/QmRQq8g5rtiTLqt1pQSeqJ64L1PrdH2wRucYdkafBQGi7z"
+			]
+		}
+	},
+	"version": 1
+}
