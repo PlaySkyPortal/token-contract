@@ -116,7 +116,7 @@ contract InitializableOwnable {
 contract LAPIS is InitializableOwnable {
     using SafeMath for uint256;
 
-    string public name = "LAPIS bird";
+    string public name = "LAPIS";
     uint256 public decimals = 18;
     string public symbol = "LAPIS";
     uint256 public totalSupply;
